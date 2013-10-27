@@ -33,7 +33,7 @@
                             </a>
                         </p>
                     </div>
-                    <div class="container-1" style="width: 50%;float: left;height: 250px;overflow-y: scroll;">
+                    <div class="container-1" style="width: 65%;float: left;height: 250px;overflow-y: scroll;">
                         <table style="width: 100%">
                         <tr style="text-align: left;">
                             <th>Name</th>
@@ -77,7 +77,7 @@
                             </a>
                         </p>
                     </div>
-                    <div class="container-1" style="width: 50%;float: left;height: 250px;overflow-y: scroll;">
+                    <div class="container-1" style="width: 65%;float: left;height: 250px;overflow-y: scroll;">
                         <table style="width: 100%">
                         <tr style="text-align: left;">
                             <th>Name</th>
@@ -105,7 +105,7 @@
             <div class="container-1">
             <h2><a href="hlsw://{$results.ettjpriv.gq_address}:{$results.ettjpriv.gq_port}">{@$results.ettjpriv.sv_hostname}</a></h2>
                 <div class="container-1" style="margin-top:15px;">
-                    <div class="container-1"  style="width: 30%;float: left">
+                    <div class="container-1"  style="width: 65%;float: left">
                         <img src="http://et.splatterladder.com/levelshots/et/{$results.ettjpriv.mapname}.jpg" alt="" /><br/>
                         <p>
                         Map: {$results.ettjpriv.mapname}
@@ -147,5 +147,16 @@
         </div>
 	</div>
 	{include file='footer' sandbox=false} 
+    <script>
+    (function(){
+        var allimgs = document.images;
+        
+        for(var i=0; i<allimgs.length; i++){
+            allimgs[i].onerror = function () {
+                this.style.visibility = "hidden"; // other elements not affected 
+            }
+        }
+    })();
+    </script>
 </body>
 </html>
