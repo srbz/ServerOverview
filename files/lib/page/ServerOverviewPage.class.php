@@ -152,8 +152,10 @@ class ServerOverviewPage extends AbstractPage {
             if($serverData['gq_protocol'] === 'quake3')
             {
                 $data[$serverType]['sv_hostname'] = $this->parseQuake3ColorCodes($data[$serverType]['sv_hostname']);
-                foreach($data[$serverType]['players'] as $k => $player){
-                    $data[$serverType]['players'][$k]['name'] = $this->parseQuake3ColorCodes($player['name']);
+                if(isset($data[$serverType]['players'])){
+                    foreach($data[$serverType]['players'] as $k => $player){
+                        $data[$serverType]['players'][$k]['name'] = $this->parseQuake3ColorCodes($player['name']);
+                    }
                 }
             }
         }
