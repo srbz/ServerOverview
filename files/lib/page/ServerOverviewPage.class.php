@@ -151,9 +151,9 @@ class ServerOverviewPage extends AbstractPage {
         foreach($data as $serverType => $serverData){
             if($serverData['gq_protocol'] === 'quake3')
             {
-                $data[$serverType]['gq_hostname'] = $this->parseQuake3ColorCodes($data[$serverType]['gq_hostname']);
+                $data[$serverType]['sv_hostname'] = $this->parseQuake3ColorCodes($data[$serverType]['sv_hostname']);
                 foreach($data[$serverType]['players'] as $k => $player){
-                    $data[$serverType]['players'][$k]['gq_name'] = $this->parseQuake3ColorCodes($player['gq_name']);
+                    $data[$serverType]['players'][$k]['name'] = $this->parseQuake3ColorCodes($player['name']);
                 }
             }
         }
@@ -183,7 +183,7 @@ class ServerOverviewPage extends AbstractPage {
         parent::assignVariables();
         
         WCF::getTPL()->assign(array(
-            'results' => $this->gameqData;
+            'results' => $this->gameqData
         ));
     }
     
