@@ -194,4 +194,3 @@ class ServerOverviewPage extends AbstractPage {
         parent::show();
     }
 }
-?>
