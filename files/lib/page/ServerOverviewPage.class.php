@@ -193,6 +193,8 @@ class ServerOverviewPage extends AbstractPage {
 	 * @see AbstractPage::show()
 	 */
     public function show() {
+        require_once(WCF_DIR . 'lib/page/util/menu/PageMenu.class.php');
+        PageMenu::setActiveMenuItem('Serverübersicht');
         parent::show();
     }
 }

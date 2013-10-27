@@ -1,6 +1,6 @@
 {include file='documentHeader'}
 <head>
-	<title>Server Overviewe - {lang}{PAGE_TITLE}{/lang}</title> 
+	<title>Serverübersicht - {lang}{PAGE_TITLE}{/lang}</title> 
 	{include file='headInclude' sandbox=false}
 </head>
 <body>
@@ -13,7 +13,7 @@
 		<div class="mainHeadline">
 			<img src="{icon}updateServerL.png{/icon}" alt="" /> 
 			<div class="headlineContainer">
-				<h2>Server Overview</h2> 
+				<h2>Serverübersicht</h2> 
 				<p>{$results|count} Server online</p>
 			</div>
 		</div>
@@ -84,7 +84,7 @@
                             <th>Punkte</th>
                             <th>Ping</th>
                         </tr>
-                            {if $results.ettj.num_players|count > 0}
+                            {if $results.ettj.num_players > 0}
                             {foreach from=$results.ettj.players item=$player}
                                 <tr style="background-color: {cycle values="#eee ,#fff"}">
                                     <td>{@$player.name}</td>
@@ -126,7 +126,7 @@
                             <th>Punkte</th>
                             <th>Ping</th>
                         </tr>
-                            {if $results.ettjpriv.num_players|count > 0}
+                            {if $results.ettjpriv.num_players > 0}
                             {foreach from=$results.ettjpriv.players item=$player}
                                 <tr style="background-color: {cycle values="#eee ,#fff"}">
                                     <td>{@$player.name}</td>

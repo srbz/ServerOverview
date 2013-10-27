@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/pagemenu.xsd">
     <import>
-        <pagemenuitem name="Server Overview">
-            <iconmedium>groupM.png</iconmedium>
-            <iconsmall>groupS.png</iconsmall>
+        <pagemenuitem name="Serverübersicht">
+            <iconmedium>updateServerM.png</iconmedium>
+            <iconsmall>updateServerM.png</iconsmall>
             <link>index.php?page=ServerOverview</link>
             <showorder>20</showorder>
             <position>header</position>
