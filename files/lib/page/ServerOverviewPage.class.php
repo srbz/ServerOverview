@@ -17,6 +17,8 @@ class ServerOverviewPage extends AbstractPage {
     // ServerOverview.tpl
     public $templateName = 'ServerOverview';
     
+    protected $gameqData = array();
+    
     /**
      * Parses and translates the Quake3 Color Codes into html
      *
@@ -144,11 +146,21 @@ class ServerOverviewPage extends AbstractPage {
             'host' => 'sexygaming.de:27965',
         ));
         //request resultset
-        $results = $gq->requestData();
+        $data = $gq->requestData();
+        
+        foreach($data as $serverType => $serverData){
+            if($serverData['gq_protocol'] === 'quake3')
+            {
+                $data[$serverType]['gq_hostname'] = $this->parseQuake3ColorCodes($data[$serverType]['gq_hostname']);
+                foreach($data[$serverType]['players'] as $k => $player){
+                    $data[$serverType]['players'][$k]['gq_name'] = $this->parseQuake3ColorCodes($player['gq_name']);
+                }
+            }
+        }
+        
+        $this->gameqData = $data;
         //assign the result var into template
-        WCF::getTPL()->assign(array(
-            'results' => $results
-        ));
+        
         
        //PLAYER IN CHANNEL OUTPUT TS3
         // foreach($results['ts3']['players'] as $player) {
@@ -169,6 +181,10 @@ class ServerOverviewPage extends AbstractPage {
 	 */
     public function assignVariables() {
         parent::assignVariables();
+        
+        WCF::getTPL()->assign(array(
+            'results' => $this->gameqData;
+        ));
     }
     
     /**
