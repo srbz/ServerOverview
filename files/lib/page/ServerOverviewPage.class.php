@@ -158,6 +158,14 @@ class ServerOverviewPage extends AbstractPage {
                     }
                 }
             }
+            if($serverData['gq_protocol'] === 'teamspeak3')
+            {
+                if(isset($serverData['players']))
+                {
+                    usort($data[$serverType]['players'], function($a, $b){ return $a['cid'] < $b['cid']; });
+                }
+            }
+
         }
         
         $this->gameqData = $data;
