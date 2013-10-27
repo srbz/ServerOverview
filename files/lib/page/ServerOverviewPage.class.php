@@ -35,7 +35,7 @@ class ServerOverviewPage extends AbstractPage {
             '$' => '#007FFF',
             '%' => '#7F00FF',
             '&' => '#3399CC',
-            '*' => '#FFFFFF',
+            '*' => '#CCC', //FFFFFF
             '(' => '#006633',
             ')' => '#FF0033',
             '_' => '#7F0000',
@@ -48,7 +48,7 @@ class ServerOverviewPage extends AbstractPage {
             '4' => '#0000FF',
             '5' => '#00FFFF',
             '6' => '#FF00FF',
-            '7' => '#FFFFFF',
+            '7' => '#CCC', //FFFFFF
             '8' => '#FF7F00',
             '9' => '#7F7F7F',
             '0' => '#000000',
@@ -56,7 +56,7 @@ class ServerOverviewPage extends AbstractPage {
             '=' => '#7F7F00',
             '\\' => '#007F00',
             'Q' => '#FF0000',
-            'W' => '#FFFFFF',
+            'W' => '#CCC', //FFFFFF
             'E' => '#7F00FF',
             'R' => '#00FF00',
             'T' => '#0000FF',
@@ -96,12 +96,12 @@ class ServerOverviewPage extends AbstractPage {
             '?' => '#7F0000',
         );
 
-        $color = '<span class="player"><span style="#FFFFFF">';
+        $color = '<span class="player"><span style="#ccc">';
         for($i = 0; $i < strlen($name); $i++)
         {
             if($name[$i] == '^')
             {
-                $colorCode = isset($colorMapping[strtoupper($name[$i+1])]) ? $colorMapping[strtoupper($name[$i+1])] : '#FFFFFF';
+                $colorCode = isset($colorMapping[strtoupper($name[$i+1])]) ? $colorMapping[strtoupper($name[$i+1])] : '#ccc';
                 $color    .= '</span><span style="color: '.$colorCode.'">';
                 $i++; continue;
             }
