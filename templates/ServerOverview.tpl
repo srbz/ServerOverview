@@ -25,7 +25,7 @@
             <h2><a href="ts3://{$results.ts3.gq_address}:{$results.ts3.virtualserver_port}">{$results.ts3.virtualserver_name}</a></h2>
                 <div class="container-1" style="margin-top:15px;">
                     <div class="container-1"  style="width: 30%;float: left">
-                        Online: {$results.ts3.virtualserver_clientsonline} / {$results.ts3.virtualserver_maxclients}
+                        Online: {$results.ts3.virtualserver_clientsonline - 1} / {$results.ts3.virtualserver_maxclients}
                         <br>
                         <p>
                             <a href="ts3://{$results.ts3.gq_address}:{$results.ts3.virtualserver_port}">
