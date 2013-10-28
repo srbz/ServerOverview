@@ -148,6 +148,12 @@ class ServerOverviewPage extends AbstractPage {
             'type' => 'et',
             'host' => 'sexygaming.de:27965',
         ));
+        //add et xmas server
+        $gq->addServer(array(
+            'id' => 'etpro',
+            'type' => 'et',
+            'host' => 'sexygaming.de:27980',
+        ));
         //request resultset
         $data = $gq->requestData();
         $data = array_filter($data, function($entry){
