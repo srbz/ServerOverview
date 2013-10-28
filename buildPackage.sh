@@ -10,8 +10,12 @@ mkdir build
 # copy all src files into build
 cp -R src/* build/
 
+if [ ! -d build/files/lib/util/ ]; then
+    mkdir -p build/files/lib/util
+fi
+
 # ./build - Link Librarys into build dir
-cd build && ln -s ../../../../../lib/GameQ files/lib/page/util/
+cd build && ln -s ../../../../lib/GameQ files/lib/util/
 # ./build/files - create files.tar
 cd files && tar -chf ../files.tar * && cd ..
 # ./build/templates - create templates.tar

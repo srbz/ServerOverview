@@ -2,7 +2,7 @@
 // wcf imports
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
 // util imports
-require_once(WCF_DIR.'lib/page/util/GameQ.php');
+require_once(WCF_DIR.'lib/util/GameQ/GameQ.php');
 require_once(WCF_DIR.'lib/util/StringStack.class.php');
 require_once(WCF_DIR.'lib/util/HeaderUtil.class.php');
 /**
