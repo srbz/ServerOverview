@@ -49,7 +49,6 @@
 		{if $userMessages|isset}{@$userMessages}{/if}
 
         {foreach from=$results key='protocol' item='serverData'}
-            {if $serverData.gq_protocol|isset}
             <div class="border content">
                 <div class="container-1">
                     {if $serverData.gq_protocol === 'quake3'}
@@ -140,7 +139,6 @@
                     {/if}
                 </div>
             </div>
-            {/if}
         {/foreach}
 	</div>
 	{include file='footer' sandbox=false} 

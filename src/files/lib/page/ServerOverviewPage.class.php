@@ -150,7 +150,10 @@ class ServerOverviewPage extends AbstractPage {
         ));
         //request resultset
         $data = $gq->requestData();
-        
+        $data = array_filter($data, function($entry){
+            return isset($entry['gq_hostname']) && $entry['gq_hostname'];
+        });
+
         foreach($data as $serverType => $serverData){
             if($serverData['gq_protocol'] === 'quake3')
             {
