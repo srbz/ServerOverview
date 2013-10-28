@@ -15,7 +15,7 @@ require_once(WCF_DIR.'lib/util/HeaderUtil.class.php');
  */
 class ServerOverviewPage extends AbstractPage {
     // ServerOverview.tpl
-    public $templateName = 'ServerOverview';
+    public $templateName = 'serverOverview';
     
     protected $gameqData = array();
     
@@ -127,6 +127,9 @@ class ServerOverviewPage extends AbstractPage {
         parent::readData();
         //create the GameQ class
         $gq = new GameQ();
+
+        $gq->setFilter('normalise');
+
         //add teamspeak server
         $gq->addServer(array(
             'id' => 'ts3',
