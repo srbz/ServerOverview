@@ -16,9 +16,10 @@ require_once(WCF_DIR.'lib/util/HeaderUtil.class.php');
 class ServerOverviewPage extends AbstractPage {
     // ServerOverview.tpl
     public $templateName = 'serverOverview';
-    
-    protected $gameqData = array();
-    
+
+    protected $gameqData     = array();
+    protected $fullPathArray = array();
+
     /**
      * Parses and translates the Quake3 Color Codes into html
      *
@@ -112,17 +113,17 @@ class ServerOverviewPage extends AbstractPage {
         $color .= '</span></span>';
         return $color;
     }
-    
+
     /**
 	 * @see AbstractPage::readParameters()
 	 */
     public function readParameters() {
         parent::readParameters();
     }
-    
-	/**
+
+    /**
 	 * @see AbstractPage::readData()
-	 */    
+	 */
     public function readData() {
         parent::readData();
         //create the GameQ class
@@ -154,11 +155,32 @@ class ServerOverviewPage extends AbstractPage {
             'type' => 'et',
             'host' => 'sexygaming.de:27980',
         ));
+
         //request resultset
         $data = $gq->requestData();
         $data = array_filter($data, function($entry){
             return isset($entry['gq_hostname']) && $entry['gq_hostname'];
         });
+
+        $fullPathArray = array();
+        if(isset($data['ts3']) && isset($data['ts3']['teams']) && !empty($data['ts3']['teams']))
+        {
+            foreach($data['ts3']['teams'] as $team)
+            {
+                $fullName = $team['gq_name'];
+                $parent = intval($team['pid']);
+                while($parent != 0)
+                {
+                    $parent = $data['ts3']['teams'][$parent];
+
+                    $fullName = $parent['gq_name'].' > '.$fullName;
+
+                    $parent = $parent['pid'];
+                }
+		$fullName = preg_replace('(\[(l|c|r)spacer\])', '', $fullName);
+                $fullPathArray[$team['cid']] = $fullName;
+            }
+        }
 
         foreach($data as $serverType => $serverData){
             if($serverData['gq_protocol'] === 'quake3')
@@ -174,41 +196,28 @@ class ServerOverviewPage extends AbstractPage {
             {
                 if(isset($serverData['players']))
                 {
-                    usort($data[$serverType]['players'], function($a, $b){ return $a['cid'] < $b['cid']; });
+                    usort($data[$serverType]['players'], function($a, $b) use ($fullPathArray) { return $fullPathArray[$a['cid']] < $fullPathArray[$b['cid']]; });
                 }
             }
-
         }
-        
-        $this->gameqData = $data;
-        //assign the result var into template
-        
-        
-       //PLAYER IN CHANNEL OUTPUT TS3
-        // foreach($results['ts3']['players'] as $player) {
-            // foreach($results['ts3']['teams'] as $teams) {
-                // if($player['cid'] == $teams['cid']) {
-                    // echo $player['client_nickname'].' in Channel '.$teams['channel_name'].'<br>';
-                // }
-            // }
-        // }
-        //DEBUGGING
-        // var_dump($results['ettj']);
-        // var_dump($results['ts3']['teams']);
-        // var_dump($results['ts3']['players']);
+
+
+        $this->fullPathArray = $fullPathArray;
+        $this->gameqData     = $data;
     }
-    
+
 	/**
 	 * @see AbstractPage::assignVariables()
 	 */
     public function assignVariables() {
         parent::assignVariables();
-        
+
         WCF::getTPL()->assign(array(
-            'results' => $this->gameqData
+            'results' => $this->gameqData,
+            'full_path_array' => $this->fullPathArray
         ));
     }
-    
+
     /**
 	 * @see AbstractPage::show()
 	 */
