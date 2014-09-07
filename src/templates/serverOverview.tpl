@@ -33,16 +33,16 @@
     </style>
 </head>
 <body>
-	{include file='header' sandbox=false} 
+	{include file='header' sandbox=false}
 	<div id="main">
 		<ul class="breadCrumbs">
 			<li><a href="index.php{@SID_ARG_1ST}"><span>{lang}{PAGE_TITLE}{/lang}</span></a> &raquo;</li>
-		</ul> 
+		</ul>
 
 		<div class="mainHeadline">
-			<img src="{icon}updateServerL.png{/icon}" alt="" /> 
+			<img src="{icon}updateServerL.png{/icon}" alt="" />
 			<div class="headlineContainer">
-				<h2>Serverübersicht</h2> 
+				<h2>Serverübersicht</h2>
 				<!--<p>{$results|count} Server</p>-->
 			</div>
 		</div>
@@ -109,21 +109,17 @@
                             <div class="container-1 serverPlayers">
                                 <table>
                                     <tr>
-                                        <th>Name</th>
                                         <th>Channel</th>
+                                        <th>Name</th>
                                     </tr>
                                     {if $serverData.players|count > 0}
                                         {* reset cycle *}
                                         {cycle values="even ,odd" reset=yes print=false}
                                         {foreach from=$serverData.players item=$player}
-                                            {foreach from=$serverData.teams item=$team}
-                                                {if $team.cid == $player.cid}
-                                                    <tr class="{cycle values="even ,odd"}">
-                                                        <td>{@$player.client_nickname}</td>
-                                                        <td>{@$team.channel_name}</td>
-                                                    </tr>
-                                                {/if}
-                                            {/foreach}
+                                            <tr class="{cycle values="even ,odd"}">
+                                                <td>{@$full_path_array[$player.cid]}</td>
+                                                <td>{@$player.client_nickname}</td>
+                                            </tr>
                                         {/foreach}
                                     {else}
                                         <tr>
@@ -141,14 +137,14 @@
             </div>
         {/foreach}
 	</div>
-	{include file='footer' sandbox=false} 
+	{include file='footer' sandbox=false}
     <script>
     (function(){
         var allimgs = document.images;
-        
+
         for(var i=0; i<allimgs.length; i++){
             allimgs[i].onerror = function () {
-                this.style.visibility = "hidden"; // other elements not affected 
+                this.style.visibility = "hidden"; // other elements not affected
             }
         }
     })();
